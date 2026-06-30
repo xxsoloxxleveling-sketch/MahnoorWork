@@ -142,9 +142,9 @@ export default function WebsitePreview({ onNext, onPrev, domain, websiteName, th
       </div>
 
       {/* Preview Container */}
-      <div className="flex-1 overflow-hidden flex justify-center bg-slate-200/50 rounded-3xl border border-slate-200 p-4 sm:p-8">
+      <div className="flex-1 flex justify-center bg-slate-200/50 rounded-3xl border border-slate-200 p-4 sm:p-8">
         <div 
-          className="bg-white rounded-t-2xl shadow-2xl overflow-y-auto border border-slate-300 transition-all duration-500 ease-in-out relative flex flex-col"
+          className="bg-white rounded-t-2xl shadow-2xl border border-slate-300 transition-all duration-500 ease-in-out relative flex flex-col"
           style={{ width: deviceWidths[device] }}
         >
           {/* Mock Browser Header */}

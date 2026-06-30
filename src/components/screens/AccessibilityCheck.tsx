@@ -59,7 +59,7 @@ export default function AccessibilityCheck({ onNext, onPrev }: { onNext: () => v
       </motion.div>
 
       <motion.div 
-        className="flex-1 overflow-y-auto pr-4 space-y-6"
+        className="flex-1 pr-4 space-y-6"
         variants={containerVariants}
         initial="hidden"
         animate="visible"

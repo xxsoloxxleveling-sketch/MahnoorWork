@@ -2,7 +2,7 @@ import Wizard from "@/components/Wizard";
 
 export default function Home() {
   return (
-    <main className="h-screen w-full overflow-hidden bg-background">
+    <main className="min-h-screen w-full bg-background">
       <Wizard />
     </main>
   );

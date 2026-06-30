@@ -62,7 +62,7 @@ export default function WebsiteRequirements({ onNext, onPrev, websiteName, onNam
       </motion.div>
 
       <motion.div 
-        className="space-y-5 mb-12 flex-1 overflow-y-auto pr-2"
+        className="space-y-5 mb-12 flex-1 pr-2"
         variants={containerVariants}
         initial="hidden"
         animate="visible"

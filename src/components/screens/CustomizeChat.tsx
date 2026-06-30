@@ -17,12 +17,12 @@ export default function CustomizeChat({ onNext, onPrev, themeColor }: { onNext: 
         </div>
       </div>
 
-      <div className="flex-1 flex flex-col lg:flex-row gap-6 overflow-hidden min-h-0">
+      <div className="flex-1 flex flex-col lg:flex-row gap-6 min-h-[500px]">
         
         {/* Full Width Preview */}
-        <div className="w-full h-full bg-slate-100/50 rounded-3xl border border-slate-200 p-6 overflow-hidden relative flex flex-col items-center justify-center bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]">
+        <div className="w-full h-full min-h-[500px] bg-slate-100/50 rounded-3xl border border-slate-200 p-6 relative flex flex-col items-center justify-center bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]">
           
-          <div className="w-full h-full max-w-4xl bg-white rounded-xl shadow-xl border border-slate-200/60 overflow-hidden flex flex-col">
+          <div className="w-full h-full min-h-[400px] max-w-4xl bg-white rounded-xl shadow-xl border border-slate-200/60 overflow-hidden flex flex-col">
             <div className="bg-slate-50 p-2 border-b border-slate-200 flex items-center gap-2 shrink-0">
               <div className="flex gap-1.5 ml-2">
                 <div className="w-3 h-3 rounded-full bg-rose-400"></div>
