@@ -172,7 +172,7 @@ export default function RobotAssistant({ stepMessage, showChat = false, onChatAc
   }, [stepMessage]);
 
   return (
-    <div className="relative w-full h-full flex flex-col items-center justify-center bg-gradient-to-br from-indigo-50 to-purple-100/50 border-r border-slate-200/50 overflow-hidden">
+    <div className="relative w-full h-full flex flex-col items-center justify-center bg-cover bg-center border-r border-slate-200/50 overflow-hidden" style={{ backgroundImage: "url('/cute_robot_background.png')" }}>
       
       {/* ✨ Cute Animated Background Elements */}
       <div className="absolute inset-0 pointer-events-none z-[1]">

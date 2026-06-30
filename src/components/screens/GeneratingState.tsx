@@ -21,10 +21,10 @@ export default function GeneratingState({ onNext, onCancel, onStepChange }: { on
           return prev + 1;
         }
         clearInterval(interval);
-        setTimeout(onNext, 1500);
+        setTimeout(onNext, 2500);
         return prev;
       });
-    }, 1500);
+    }, 3500);
 
     return () => clearInterval(interval);
   }, [onNext]);
