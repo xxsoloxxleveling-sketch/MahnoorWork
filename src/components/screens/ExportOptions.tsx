@@ -96,7 +96,7 @@ export default function ExportOptions({ onPrev }: { onPrev: () => void }) {
   }, []);
 
   return (
-    <div className="flex flex-col h-full max-w-5xl mx-auto relative">
+    <div className="flex flex-col flex-1 min-h-[500px] max-w-5xl mx-auto relative py-4">
       
       {/* Confetti particles */}
       {showConfetti && (

@@ -102,7 +102,7 @@ export default function Wizard() {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: -50 }}
             transition={{ duration: 0.4 }}
-            className="w-full md:w-[30%] h-[40vh] md:h-full shrink-0 shadow-xl z-20 bg-white"
+            className="w-full md:w-[30%] h-[35vh] min-h-[250px] md:min-h-0 md:h-full shrink-0 shadow-xl z-20 bg-white"
           >
             <RobotAssistant stepMessage={getRobotMessage()} showChat={currentStep === 6} onChatAction={handleChatAction} />
           </motion.div>
@@ -110,22 +110,22 @@ export default function Wizard() {
       </AnimatePresence>
 
       {/* Right Panel: Content (70% or 100%) */}
-      <div className={`w-full ${currentStep > 1 ? 'md:w-[70%] h-[60vh] noise-overlay mesh-gradient' : 'md:w-full h-full'} md:h-full flex flex-col relative transition-all duration-500`}>
+      <div className={`w-full ${currentStep > 1 ? 'md:w-[70%] flex-1 noise-overlay mesh-gradient' : 'md:w-full h-full'} md:h-full flex flex-col relative transition-all duration-500`}>
         
         {/* Stepper Navigation (Only show after step 1) */}
         {currentStep > 1 && (
-          <div className="w-full px-6 xl:px-10 py-5 border-b border-slate-200/60 bg-white/70 backdrop-blur-xl z-10">
-            <div className="flex items-center justify-between max-w-4xl mx-auto">
+          <div className="w-full px-4 sm:px-6 xl:px-10 py-3 sm:py-5 border-b border-slate-200/60 bg-white/70 backdrop-blur-xl z-10 shrink-0">
+            <div className="flex items-center justify-between max-w-4xl mx-auto overflow-x-auto no-scrollbar pb-1 sm:pb-0">
               {STEPS.map((step, index) => {
                 const stepNumber = index + 1;
                 const isActive = currentStep === stepNumber;
                 const isPast = currentStep > stepNumber;
                 return (
-                  <div key={step} className="flex items-center">
-                    <div className="flex flex-col items-center gap-2">
+                  <div key={step} className="flex items-center shrink-0">
+                    <div className="flex flex-col items-center gap-1 sm:gap-2">
                       {/* Step circle */}
                       <motion.div 
-                        className={`w-9 h-9 rounded-full flex items-center justify-center text-sm font-bold transition-all duration-500
+                        className={`w-7 h-7 sm:w-9 sm:h-9 rounded-full flex items-center justify-center text-xs sm:text-sm font-bold transition-all duration-500
                           ${isActive 
                             ? 'bg-gradient-to-br from-primary to-primary-dark text-white step-glow scale-110' 
                             : isPast 
@@ -141,20 +141,20 @@ export default function Wizard() {
                             animate={{ scale: 1 }}
                             transition={{ type: "spring", stiffness: 500 }}
                           >
-                            <Check size={16} strokeWidth={3} />
+                            <Check size={14} strokeWidth={3} />
                           </motion.div>
                         ) : (
                           stepNumber
                         )}
                       </motion.div>
-                      <span className={`text-[10px] font-semibold uppercase tracking-wider hidden lg:block transition-colors duration-300
+                      <span className={`text-[9px] sm:text-[10px] font-semibold uppercase tracking-wider hidden md:block transition-colors duration-300
                         ${isActive ? 'text-primary' : isPast ? 'text-secondary-dark' : 'text-slate-400'}`}
                       >
                         {step}
                       </span>
                     </div>
                     {index < STEPS.length - 1 && (
-                      <div className="w-6 xl:w-12 h-[3px] mx-1.5 rounded-full overflow-hidden bg-slate-100">
+                      <div className="w-4 sm:w-6 xl:w-12 h-[2px] sm:h-[3px] mx-1 sm:mx-1.5 rounded-full overflow-hidden bg-slate-100 shrink-0">
                         <motion.div 
                           className="h-full rounded-full progress-line"
                           initial={{ width: "0%" }}
@@ -171,7 +171,7 @@ export default function Wizard() {
         )}
 
         {/* Content Area */}
-        <div className={`flex-1 overflow-y-auto relative z-[1] ${currentStep === 1 ? '' : 'p-4 md:p-8'}`}>
+        <div className={`flex-1 overflow-y-auto relative z-[1] flex flex-col ${currentStep === 1 ? '' : 'p-4 md:p-8'}`}>
           <AnimatePresence mode="wait">
             <motion.div
               key={currentStep}
@@ -179,7 +179,7 @@ export default function Wizard() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
               transition={{ duration: 0.4, ease: "easeInOut" }}
-              className={`w-full h-full mx-auto ${currentStep === 1 ? '' : 'max-w-5xl'}`}
+              className={`w-full min-h-full flex flex-col mx-auto ${currentStep === 1 ? '' : 'max-w-5xl'}`}
             >
               {renderStep()}
             </motion.div>

@@ -45,7 +45,7 @@ export default function AccessibilityCheck({ onNext, onPrev }: { onNext: () => v
   const scoreBg = isFixed ? 'bg-emerald-50' : 'bg-amber-50';
 
   return (
-    <div className="flex flex-col h-full max-w-4xl mx-auto">
+    <div className="flex flex-col flex-1 min-h-[500px] max-w-4xl mx-auto py-4">
       
       <motion.div 
         className="mb-8"

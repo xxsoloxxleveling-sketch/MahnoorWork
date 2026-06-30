@@ -32,7 +32,7 @@ export default function GeneratingState({ onNext, onCancel }: { onNext: () => vo
   const progressPercentage = Math.round((currentStepIndex / (generationSteps.length - 1)) * 100);
 
   return (
-    <div className="flex flex-col h-full max-w-3xl mx-auto justify-center">
+    <div className="flex flex-col flex-1 min-h-[500px] max-w-3xl mx-auto justify-center py-8">
       
       {/* Orbital Animation + Title */}
       <div className="text-center mb-12 relative">

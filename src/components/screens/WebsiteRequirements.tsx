@@ -40,7 +40,7 @@ export default function WebsiteRequirements({ onNext, onPrev, websiteName, onNam
   const filledCount = [websiteName ? 1 : 0, 1, 1, selectedFeatures.size > 0 ? 1 : 0].reduce((a, b) => a + b, 0);
   
   return (
-    <div className="flex flex-col h-full max-w-4xl mx-auto">
+    <div className="flex flex-col flex-1 min-h-[500px] max-w-4xl mx-auto py-2">
       <motion.div 
         className="mb-6"
         initial={{ opacity: 0, y: -10 }}

@@ -108,7 +108,7 @@ export default function WebsitePreview({ onNext, onPrev, domain, websiteName, th
   const activeColor = colorMap[themeColor || currentDomain.color] || colorMap.teal;
 
   return (
-    <div className="flex flex-col h-full overflow-hidden">
+    <div className="flex flex-col flex-1 min-h-[600px]">
       
       {/* Header & Device Toggles */}
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-6 shrink-0 gap-4">

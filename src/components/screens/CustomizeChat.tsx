@@ -5,7 +5,7 @@ import { ArrowLeft, ArrowRight, Sparkles, Lock } from "lucide-react";
 export default function CustomizeChat({ onNext, onPrev, themeColor }: { onNext: () => void, onPrev: () => void, themeColor: string }) {
 
   return (
-    <div className="flex flex-col h-full w-full max-w-6xl mx-auto overflow-hidden">
+    <div className="flex flex-col flex-1 min-h-[500px] w-full max-w-6xl mx-auto">
       
       <div className="mb-4 flex items-end justify-between shrink-0">
         <div>

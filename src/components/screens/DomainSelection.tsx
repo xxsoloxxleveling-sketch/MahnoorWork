@@ -35,7 +35,7 @@ const cardVariants: Variants = {
 export default function DomainSelection({ onNext, onPrev, selectedDomain, onSelect }: { onNext: () => void, onPrev: () => void, selectedDomain: string | null, onSelect: (domain: string) => void }) {
 
   return (
-    <div className="flex flex-col h-full">
+    <div className="flex flex-col flex-1 min-h-[500px]">
       <motion.div 
         className="mb-8"
         initial={{ opacity: 0, y: -10 }}
