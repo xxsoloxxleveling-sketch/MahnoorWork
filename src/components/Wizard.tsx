@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Check } from "lucide-react";
 import RobotAssistant from "./RobotAssistant";
@@ -29,7 +29,17 @@ export default function Wizard() {
   const [websiteName, setWebsiteName] = useState("");
   const [aiCustomizeMessage, setAiCustomizeMessage] = useState("Customize With Natural Language. Just tell me what you want to change!");
   const [themeColor, setThemeColor] = useState("teal");
+  const [darkMode, setDarkMode] = useState(false);
   const [generatingStepIndex, setGeneratingStepIndex] = useState(0);
+
+  const contentAreaRef = useRef<HTMLDivElement>(null);
+
+  // Scroll to top on step change
+  useEffect(() => {
+    if (contentAreaRef.current) {
+      contentAreaRef.current.scrollTop = 0;
+    }
+  }, [currentStep]);
 
   const generatingMessages = [
     "🔍 Hmm let me read your requirements... *adjusts tiny glasses*",
@@ -42,11 +52,46 @@ export default function Wizard() {
   const handleChatAction = (text: string) => {
     setAiCustomizeMessage("Thinking...");
     setTimeout(() => {
+      const lowerText = text.toLowerCase();
       let aiResponse = "I've updated that for you! Check out the preview.";
-      if (text.toLowerCase().includes("blue")) {
+      
+      if (lowerText.includes("blue")) {
         aiResponse = "Done! I've updated the theme color to blue.";
         setThemeColor("blue");
+      } else if (lowerText.includes("orange")) {
+        aiResponse = "Done! I've updated the theme color to orange.";
+        setThemeColor("orange");
+      } else if (lowerText.includes("violet") || lowerText.includes("purple")) {
+        aiResponse = "Done! I've updated the theme color to purple.";
+        setThemeColor("violet");
+      } else if (lowerText.includes("pink")) {
+        aiResponse = "Done! I've updated the theme color to pink.";
+        setThemeColor("pink");
+      } else if (lowerText.includes("teal")) {
+        aiResponse = "Done! I've updated the theme color to teal.";
+        setThemeColor("teal");
+      } else if (lowerText.includes("name") || lowerText.includes("title")) {
+        const altNames: Record<string, string> = {
+          education: "Alpha Prep Academy",
+          healthcare: "Apex Dental Care",
+          restaurant: "The Golden Fork",
+          ecommerce: "TrendBox Store",
+          solar: "Solaris Power Co.",
+          portfolio: "Alex Mercer Studio"
+        };
+        const newName = altNames[selectedDomain || "healthcare"] || "Elite Business Studio";
+        setWebsiteName(newName);
+        aiResponse = `Done! I've updated the website name to "${newName}".`;
+      } else if (lowerText.includes("dark")) {
+        setDarkMode(true);
+        aiResponse = "Done! I've enabled dark mode for your website. Looking sleek! 🌙";
+      } else if (lowerText.includes("light")) {
+        setDarkMode(false);
+        aiResponse = "Done! Reverted back to the clean light mode layout. ☀️";
+      } else if (lowerText.includes("booking") || lowerText.includes("section") || lowerText.includes("form")) {
+        aiResponse = "Section added successfully! You can see it in your preview structure. 🏗️";
       }
+
       setAiCustomizeMessage(aiResponse);
     }, 1500);
   };
@@ -89,13 +134,13 @@ export default function Wizard() {
       case 4:
         return <GeneratingState onNext={nextStep} onCancel={() => setStep(3)} onStepChange={setGeneratingStepIndex} />;
       case 5:
-        return <WebsitePreview onNext={nextStep} onPrev={prevStep} domain={selectedDomain} websiteName={websiteName} themeColor={themeColor} onExport={() => setStep(8)} />;
+        return <WebsitePreview onNext={nextStep} onPrev={prevStep} domain={selectedDomain} websiteName={websiteName} themeColor={themeColor} onExport={() => setStep(8)} darkMode={darkMode} />;
       case 6:
-        return <CustomizeChat onNext={nextStep} onPrev={prevStep} themeColor={themeColor} domain={selectedDomain} websiteName={websiteName} />;
+        return <CustomizeChat onNext={nextStep} onPrev={prevStep} themeColor={themeColor} domain={selectedDomain} websiteName={websiteName} darkMode={darkMode} />;
       case 7:
         return <AccessibilityCheck onNext={nextStep} onPrev={prevStep} />;
       case 8:
-        return <ExportOptions onPrev={prevStep} />;
+        return <ExportOptions onPrev={prevStep} onReset={() => setStep(1)} />;
       default:
         return <LandingPage onNext={nextStep} />;
     }
@@ -180,7 +225,10 @@ export default function Wizard() {
         )}
 
         {/* Content Area */}
-        <div className={`flex-1 overflow-y-auto relative z-[1] flex flex-col min-h-0 ${currentStep === 1 ? '' : 'p-4 md:p-6'}`}>
+        <div 
+          ref={contentAreaRef}
+          className={`flex-1 overflow-y-auto relative z-[1] flex flex-col min-h-0 ${currentStep === 1 ? '' : 'p-4 md:p-6'}`}
+        >
           <AnimatePresence mode="wait">
             <motion.div
               key={currentStep}

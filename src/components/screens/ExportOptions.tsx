@@ -12,7 +12,6 @@ import {
   PartyPopper,
   Rocket,
   Loader2,
-  Copy,
   ExternalLink,
   Check
 } from "lucide-react";
@@ -82,10 +81,13 @@ const exportOptions = [
   }
 ];
 
-export default function ExportOptions({ onPrev }: { onPrev: () => void }) {
+export default function ExportOptions({ onPrev, onReset }: { onPrev: () => void, onReset?: () => void }) {
   const [showConfetti, setShowConfetti] = useState(true);
   const [activeOption, setActiveOption] = useState<string | null>(null);
   const [completedOptions, setCompletedOptions] = useState<Set<string>>(new Set());
+  const [isSaving, setIsSaving] = useState(false);
+  const [isSaved, setIsSaved] = useState(false);
+  const [isGoingToDashboard, setIsGoingToDashboard] = useState(false);
 
   useEffect(() => {
     const timer = setTimeout(() => setShowConfetti(false), 3000);
@@ -100,6 +102,23 @@ export default function ExportOptions({ onPrev }: { onPrev: () => void }) {
       setCompletedOptions(prev => new Set(prev).add(id));
       setActiveOption(null);
     }, 2000);
+  };
+
+  const handleSave = () => {
+    setIsSaving(true);
+    setTimeout(() => {
+      setIsSaving(false);
+      setIsSaved(true);
+      setTimeout(() => setIsSaved(false), 3000);
+    }, 2000);
+  };
+
+  const handleDashboard = () => {
+    setIsGoingToDashboard(true);
+    setTimeout(() => {
+      setIsGoingToDashboard(false);
+      onReset?.();
+    }, 1500);
   };
 
   const confettiParticles = useMemo(() => {
@@ -273,17 +292,40 @@ export default function ExportOptions({ onPrev }: { onPrev: () => void }) {
         
         <div className="flex items-center gap-3 w-full sm:w-auto">
           <button 
-            className="flex-1 sm:flex-none items-center justify-center gap-2 px-5 py-2.5 rounded-full font-bold text-slate-600 hover:bg-white/80 transition-colors flex border border-slate-200 text-sm"
+            onClick={handleSave}
+            disabled={isSaving || isSaved}
+            className={`flex-1 sm:flex-none items-center justify-center gap-2 px-5 py-2.5 rounded-full font-bold transition-colors flex border text-sm
+              ${isSaved 
+                ? 'bg-emerald-50 text-emerald-700 border-emerald-300' 
+                : 'text-slate-600 hover:bg-white/80 border-slate-200 bg-white'
+              }
+            `}
           >
-            <Save size={16} /> Save Project
+            {isSaving ? (
+              <Loader2 size={16} className="animate-spin" />
+            ) : isSaved ? (
+              <CheckCircle2 size={16} className="text-emerald-500" />
+            ) : (
+              <Save size={16} />
+            )}
+            {isSaving ? "Saving..." : isSaved ? "Saved!" : "Save Project"}
           </button>
           <motion.button 
+            onClick={handleDashboard}
+            disabled={isGoingToDashboard}
             className="flex-1 sm:flex-none items-center justify-center gap-2 px-6 py-2.5 rounded-full font-bold text-white relative overflow-hidden cta-glow flex text-sm"
             whileHover={{ scale: 1.03 }}
             whileTap={{ scale: 0.97 }}
           >
             <span className="absolute inset-0 bg-gradient-to-r from-primary via-primary-dark to-primary bg-[length:200%_100%] animate-[shimmer_3s_linear_infinite]" />
-            <span className="relative flex items-center gap-2">Dashboard <LayoutDashboard size={16} /></span>
+            <span className="relative flex items-center gap-2">
+              {isGoingToDashboard ? (
+                <Loader2 size={16} className="animate-spin" />
+              ) : (
+                <LayoutDashboard size={16} />
+              )}
+              {isGoingToDashboard ? "Loading..." : "Dashboard"}
+            </span>
           </motion.button>
         </div>
       </div>

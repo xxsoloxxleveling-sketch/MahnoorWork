@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { Monitor, Tablet, Smartphone, ArrowRight, ArrowLeft, Code2, CheckCircle, GraduationCap, HeartPulse, Utensils, ShoppingCart, Sun, Briefcase } from "lucide-react";
 
-export default function WebsitePreview({ onNext, onPrev, domain, websiteName, themeColor, onExport }: { onNext: () => void, onPrev: () => void, domain: string | null, websiteName: string, themeColor?: string, onExport: () => void }) {
+export default function WebsitePreview({ onNext, onPrev, domain, websiteName, themeColor, onExport, darkMode }: { onNext: () => void, onPrev: () => void, domain: string | null, websiteName: string, themeColor?: string, onExport: () => void, darkMode?: boolean }) {
   const [device, setDevice] = useState<"desktop" | "tablet" | "mobile">("desktop");
 
   const deviceWidths = {
@@ -144,17 +144,17 @@ export default function WebsitePreview({ onNext, onPrev, domain, websiteName, th
       {/* Preview Container */}
       <div className="flex-1 overflow-hidden flex justify-center bg-slate-200/50 rounded-2xl border border-slate-200 p-2 sm:p-4 min-h-0">
         <div 
-          className="bg-white rounded-t-2xl shadow-2xl overflow-y-auto border border-slate-300 transition-all duration-500 ease-in-out relative flex flex-col"
+          className={`rounded-t-2xl shadow-2xl overflow-y-auto border transition-all duration-500 ease-in-out relative flex flex-col ${darkMode ? 'bg-slate-900 text-white border-slate-700' : 'bg-white text-slate-800 border-slate-300'}`}
           style={{ width: deviceWidths[device] }}
         >
           {/* Mock Browser Header */}
-          <div className="bg-slate-100 px-4 py-3 border-b border-slate-200 flex items-center gap-2 sticky top-0 z-10">
+          <div className={`px-4 py-3 border-b flex items-center gap-2 sticky top-0 z-10 ${darkMode ? 'bg-slate-800 border-slate-700' : 'bg-slate-100 border-slate-200'}`}>
             <div className="flex gap-1.5">
               <div className="w-3 h-3 rounded-full bg-red-400"></div>
               <div className="w-3 h-3 rounded-full bg-amber-400"></div>
               <div className="w-3 h-3 rounded-full bg-green-400"></div>
             </div>
-            <div className="mx-auto bg-white px-6 py-1 rounded-md text-xs text-slate-400 font-medium flex items-center gap-2 border border-slate-200">
+            <div className={`mx-auto px-6 py-1 rounded-md text-xs font-medium flex items-center gap-2 border ${darkMode ? 'bg-slate-900 border-slate-700 text-slate-400' : 'bg-white border-slate-200 text-slate-400'}`}>
               <span className="text-slate-300">🔒</span> https://{displayName.toLowerCase().replace(/\s+/g, '-')}.domaincraft.ai
             </div>
           </div>
@@ -166,11 +166,11 @@ export default function WebsitePreview({ onNext, onPrev, domain, websiteName, th
               <div className="font-bold text-2xl flex items-center gap-2" style={{ color: activeColor.text }}>
                 <ActiveIcon style={{ color: activeColor.text }} size={28} /> {displayName}
               </div>
-              <div className="hidden md:flex items-center gap-6 text-sm font-medium text-slate-600">
-                <span style={{ color: activeColor.text }}>Home</span>
-                <span>Services</span>
-                <span>About Us</span>
-                <span>Contact</span>
+              <div className="hidden md:flex items-center gap-6 text-sm font-medium">
+                <span style={{ color: activeColor.text }} className="cursor-pointer">Home</span>
+                <span className={darkMode ? 'text-slate-300 hover:text-white cursor-pointer' : 'text-slate-600 hover:text-slate-900 cursor-pointer'}>Services</span>
+                <span className={darkMode ? 'text-slate-300 hover:text-white cursor-pointer' : 'text-slate-600 hover:text-slate-900 cursor-pointer'}>About Us</span>
+                <span className={darkMode ? 'text-slate-300 hover:text-white cursor-pointer' : 'text-slate-600 hover:text-slate-900 cursor-pointer'}>Contact</span>
                 <button className="px-5 py-2 text-white rounded-full transition-opacity hover:opacity-90" style={{ backgroundColor: activeColor.bg }}>Get Started</button>
               </div>
             </div>
@@ -178,20 +178,20 @@ export default function WebsitePreview({ onNext, onPrev, domain, websiteName, th
             {/* Hero */}
             <div className="flex flex-col md:flex-row items-center gap-6 mb-12">
               <div className="flex-1 space-y-6">
-                <h1 className="text-3xl md:text-4xl font-extrabold text-slate-800 leading-tight">
+                <h1 className={`text-3xl md:text-4xl font-extrabold leading-tight ${darkMode ? 'text-white' : 'text-slate-800'}`}>
                   {currentDomain.heroTitle.split(',')[0]}<br/> 
                   <span style={{ color: activeColor.text }}>{currentDomain.heroTitle.split(',')[1] || currentDomain.heroTitle}</span>
                 </h1>
-                <p className="text-slate-500 text-lg">
+                <p className={`text-lg ${darkMode ? 'text-slate-300' : 'text-slate-500'}`}>
                   {currentDomain.heroDesc}
                 </p>
                 <div className="flex gap-4 pt-2">
                   <button className="px-6 py-3 text-white font-bold rounded-lg shadow-lg hover:opacity-90 transition-opacity" style={{ backgroundColor: activeColor.bg }}>Learn More</button>
-                  <button className="px-6 py-3 font-bold border rounded-lg hover:bg-slate-50 transition-colors" style={{ color: activeColor.text, borderColor: activeColor.text, backgroundColor: 'white' }}>Our Services</button>
+                  <button className="px-6 py-3 font-bold border rounded-lg hover:bg-slate-800 transition-colors" style={{ color: activeColor.text, borderColor: activeColor.text, backgroundColor: darkMode ? '#1e293b' : 'white' }}>Our Services</button>
                 </div>
               </div>
               <div className="flex-1 flex justify-center">
-                <div className="w-64 h-64 rounded-full flex items-center justify-center p-8 border-4 border-white shadow-xl" style={{ backgroundColor: activeColor.lightBg }}>
+                <div className={`w-64 h-64 rounded-full flex items-center justify-center p-8 border-4 shadow-xl ${darkMode ? 'border-slate-800' : 'border-white'}`} style={{ backgroundColor: darkMode ? `${activeColor.text}20` : activeColor.lightBg }}>
                   <ActiveIcon className="w-full h-full opacity-80" style={{ color: activeColor.text }} />
                 </div>
               </div>
@@ -199,13 +199,13 @@ export default function WebsitePreview({ onNext, onPrev, domain, websiteName, th
 
             {/* Services Grid */}
             <div className="space-y-8">
-              <h3 className="text-2xl font-bold text-center text-slate-800">Our Services</h3>
+              <h3 className={`text-2xl font-bold text-center ${darkMode ? 'text-white' : 'text-slate-800'}`}>Our Services</h3>
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
                 {currentDomain.services.map((service: any) => (
-                  <div key={service.title} className="p-6 bg-white border border-slate-100 rounded-2xl shadow-sm hover:shadow-md transition-shadow">
-                    <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-4 font-bold text-xl" style={{ backgroundColor: activeColor.lightBg, color: activeColor.text }}>+</div>
-                    <h4 className="font-bold text-slate-800 mb-2">{service.title}</h4>
-                    <p className="text-sm text-slate-500">{service.desc}</p>
+                  <div key={service.title} className={`p-6 border rounded-2xl shadow-sm hover:shadow-md transition-all ${darkMode ? 'bg-slate-800 border-slate-700 text-white' : 'bg-white border-slate-100 text-slate-800'}`}>
+                    <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-4 font-bold text-xl" style={{ backgroundColor: darkMode ? `${activeColor.text}20` : activeColor.lightBg, color: activeColor.text }}>+</div>
+                    <h4 className={`font-bold mb-2 ${darkMode ? 'text-white' : 'text-slate-800'}`}>{service.title}</h4>
+                    <p className={`text-sm ${darkMode ? 'text-slate-400' : 'text-slate-500'}`}>{service.desc}</p>
                   </div>
                 ))}
               </div>
