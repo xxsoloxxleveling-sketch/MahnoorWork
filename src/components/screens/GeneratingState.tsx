@@ -11,7 +11,7 @@ const generationSteps = [
   "Finalizing and optimizing"
 ];
 
-export default function GeneratingState({ onNext, onCancel }: { onNext: () => void, onCancel: () => void }) {
+export default function GeneratingState({ onNext, onCancel, onStepChange }: { onNext: () => void, onCancel: () => void, onStepChange?: (stepIndex: number) => void }) {
   const [currentStepIndex, setCurrentStepIndex] = useState(0);
 
   useEffect(() => {
@@ -28,6 +28,10 @@ export default function GeneratingState({ onNext, onCancel }: { onNext: () => vo
 
     return () => clearInterval(interval);
   }, [onNext]);
+
+  useEffect(() => {
+    onStepChange?.(currentStepIndex);
+  }, [currentStepIndex, onStepChange]);
 
   const progressPercentage = Math.round((currentStepIndex / (generationSteps.length - 1)) * 100);
 

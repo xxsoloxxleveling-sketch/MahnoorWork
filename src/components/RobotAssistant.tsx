@@ -172,8 +172,32 @@ export default function RobotAssistant({ stepMessage, showChat = false, onChatAc
   }, [stepMessage]);
 
   return (
-    <div className="relative w-full h-full flex flex-col items-center justify-center bg-gradient-to-br from-indigo-50 to-purple-100/50 border-r border-slate-200/50">
+    <div className="relative w-full h-full flex flex-col items-center justify-center bg-gradient-to-br from-indigo-50 to-purple-100/50 border-r border-slate-200/50 overflow-hidden">
       
+      {/* ✨ Cute Animated Background Elements */}
+      <div className="absolute inset-0 pointer-events-none z-[1]">
+        {/* Floating stars */}
+        <div className="absolute top-[15%] left-[12%] text-xl animate-bounce" style={{ animationDuration: '3s', animationDelay: '0s' }}>⭐</div>
+        <div className="absolute top-[60%] right-[15%] text-lg animate-bounce" style={{ animationDuration: '4s', animationDelay: '1s' }}>✨</div>
+        <div className="absolute bottom-[25%] left-[8%] text-sm animate-bounce" style={{ animationDuration: '3.5s', animationDelay: '0.5s' }}>💜</div>
+        <div className="absolute top-[35%] right-[10%] text-base animate-bounce" style={{ animationDuration: '4.5s', animationDelay: '2s' }}>🌟</div>
+        <div className="absolute bottom-[40%] right-[25%] text-sm animate-bounce" style={{ animationDuration: '3.2s', animationDelay: '1.5s' }}>💫</div>
+        
+        {/* Floating code brackets */}
+        <div className="absolute top-[45%] left-[5%] text-primary/20 font-mono text-2xl font-bold animate-pulse" style={{ animationDuration: '3s' }}>&lt;/&gt;</div>
+        <div className="absolute bottom-[15%] right-[8%] text-primary/15 font-mono text-xl font-bold animate-pulse" style={{ animationDuration: '4s', animationDelay: '1s' }}>{ }</div>
+        
+        {/* Floating gradient dots */}
+        <div className="absolute top-[20%] right-[30%] w-3 h-3 rounded-full bg-gradient-to-r from-primary/30 to-secondary/30 animate-ping" style={{ animationDuration: '3s' }} />
+        <div className="absolute bottom-[30%] left-[20%] w-2 h-2 rounded-full bg-gradient-to-r from-pink-400/30 to-purple-400/30 animate-ping" style={{ animationDuration: '4s', animationDelay: '1.5s' }} />
+        <div className="absolute top-[70%] left-[30%] w-2.5 h-2.5 rounded-full bg-gradient-to-r from-secondary/25 to-emerald-400/25 animate-ping" style={{ animationDuration: '3.5s', animationDelay: '0.8s' }} />
+        
+        {/* Soft glowing circles */}
+        <div className="absolute top-[10%] right-[5%] w-20 h-20 rounded-full bg-primary/5 blur-xl animate-pulse" style={{ animationDuration: '5s' }} />
+        <div className="absolute bottom-[10%] left-[5%] w-16 h-16 rounded-full bg-secondary/5 blur-xl animate-pulse" style={{ animationDuration: '6s', animationDelay: '2s' }} />
+        <div className="absolute top-[50%] left-[50%] w-24 h-24 rounded-full bg-pink-300/5 blur-2xl animate-pulse" style={{ animationDuration: '7s', animationDelay: '1s' }} />
+      </div>
+
       {/* Speech Bubble */}
       <div className="absolute top-12 left-1/2 -translate-x-1/2 w-[90%] z-20">
         <div className="bg-white/90 shadow-2xl border border-white/50 backdrop-blur-xl p-5 rounded-3xl relative animate-in fade-in slide-in-from-bottom-4 duration-500 overflow-hidden group">
@@ -192,7 +216,7 @@ export default function RobotAssistant({ stepMessage, showChat = false, onChatAc
       </div>
 
       {/* 3D Canvas */}
-      <div className="w-full h-full absolute inset-0 z-0">
+      <div className="w-full h-full absolute inset-0 z-[5]">
         <Canvas camera={{ position: [0, 1, 5], fov: 45 }}>
           <ambientLight intensity={0.7} />
           <directionalLight 

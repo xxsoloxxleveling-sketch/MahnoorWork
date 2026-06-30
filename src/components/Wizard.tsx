@@ -29,6 +29,15 @@ export default function Wizard() {
   const [websiteName, setWebsiteName] = useState("");
   const [aiCustomizeMessage, setAiCustomizeMessage] = useState("Customize With Natural Language. Just tell me what you want to change!");
   const [themeColor, setThemeColor] = useState("teal");
+  const [generatingStepIndex, setGeneratingStepIndex] = useState(0);
+
+  const generatingMessages = [
+    "🔍 Hmm let me read your requirements... *adjusts tiny glasses*",
+    "🎨 Ooh picking the perfect template! This one's gonna look AMAZING ✨",
+    "🏗️ Building your layout brick by brick... I'm basically a tiny architect!",
+    "✍️ Writing beautiful content... Shakespeare who? 😎",
+    "🚀 Almost done! Just adding the final sparkle... *chef's kiss*"
+  ];
 
   const handleChatAction = (text: string) => {
     setAiCustomizeMessage("Thinking...");
@@ -55,7 +64,7 @@ export default function Wizard() {
       case 3:
         return "Let's understand your needs. The more detail you provide, the better the result!";
       case 4:
-        return "Hold tight! I'm building your website right now...";
+        return generatingMessages[generatingStepIndex] || generatingMessages[0];
       case 5:
         return "Great! Your Website is ready. Check out the preview on the right.";
       case 6:
@@ -78,7 +87,7 @@ export default function Wizard() {
       case 3:
         return <WebsiteRequirements onNext={nextStep} onPrev={prevStep} websiteName={websiteName} onNameChange={setWebsiteName} />;
       case 4:
-        return <GeneratingState onNext={nextStep} onCancel={() => setStep(3)} />;
+        return <GeneratingState onNext={nextStep} onCancel={() => setStep(3)} onStepChange={setGeneratingStepIndex} />;
       case 5:
         return <WebsitePreview onNext={nextStep} onPrev={prevStep} domain={selectedDomain} websiteName={websiteName} themeColor={themeColor} />;
       case 6:
