@@ -45,28 +45,28 @@ export default function AccessibilityCheck({ onNext, onPrev }: { onNext: () => v
   const scoreBg = isFixed ? 'bg-emerald-50' : 'bg-amber-50';
 
   return (
-    <div className="flex flex-col flex-1 min-h-[500px] max-w-4xl mx-auto py-4">
+    <div className="flex flex-col h-full max-w-4xl mx-auto">
       
       <motion.div 
-        className="mb-8"
+        className="mb-4 shrink-0"
         initial={{ opacity: 0, y: -10 }}
         animate={{ opacity: 1, y: 0 }}
       >
-        <h2 className="text-3xl font-extrabold text-slate-800 flex items-center gap-3">
+        <h2 className="text-2xl font-extrabold text-slate-800 flex items-center gap-3">
           <ShieldCheck className="text-primary" size={30} /> Accessibility Results
         </h2>
         <p className="text-slate-500 mt-2">WCAG 2.2 compliance check for your generated website.</p>
       </motion.div>
 
       <motion.div 
-        className="flex-1 pr-4 space-y-6"
+        className="flex-1 overflow-y-auto pr-2 space-y-4 min-h-0"
         variants={containerVariants}
         initial="hidden"
         animate="visible"
       >
         
         {/* Top Summary Row */}
-        <motion.div className="grid grid-cols-1 md:grid-cols-3 gap-5" variants={itemVariants}>
+        <motion.div className="grid grid-cols-1 md:grid-cols-3 gap-3" variants={itemVariants}>
           {/* Animated Score Gauge */}
           <div className={`glass-card rounded-2xl p-6 flex flex-col items-center justify-center ${scoreBg}/30 border-slate-200/60`}>
             <h3 className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-4">Score</h3>
@@ -207,7 +207,7 @@ export default function AccessibilityCheck({ onNext, onPrev }: { onNext: () => v
       </motion.div>
 
       {/* Footer */}
-      <div className="mt-6 pt-6 flex flex-col sm:flex-row items-center justify-between border-t border-slate-200/60 shrink-0 gap-4">
+      <div className="mt-3 pt-3 flex flex-col sm:flex-row items-center justify-between border-t border-slate-200/60 shrink-0 gap-3">
         <button 
           onClick={onPrev}
           className="flex items-center gap-2 px-6 py-3 rounded-full text-slate-600 font-semibold hover:bg-white/80 transition-colors w-full sm:w-auto justify-center"

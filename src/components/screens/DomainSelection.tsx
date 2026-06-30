@@ -35,18 +35,18 @@ const cardVariants: Variants = {
 export default function DomainSelection({ onNext, onPrev, selectedDomain, onSelect }: { onNext: () => void, onPrev: () => void, selectedDomain: string | null, onSelect: (domain: string) => void }) {
 
   return (
-    <div className="flex flex-col flex-1 min-h-[500px]">
+    <div className="flex flex-col h-full">
       <motion.div 
-        className="mb-8"
+        className="mb-4"
         initial={{ opacity: 0, y: -10 }}
         animate={{ opacity: 1, y: 0 }}
       >
-        <h2 className="text-3xl font-extrabold text-slate-800">Select Your Website Domain</h2>
+        <h2 className="text-2xl font-extrabold text-slate-800">Select Your Website Domain</h2>
         <p className="text-slate-500 mt-2">This helps our AI understand your requirements better.</p>
       </motion.div>
 
       <motion.div 
-        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 mb-12"
+        className="grid grid-cols-2 lg:grid-cols-3 gap-3 mb-6 flex-1"
         variants={containerVariants}
         initial="hidden"
         animate="visible"
@@ -62,7 +62,7 @@ export default function DomainSelection({ onNext, onPrev, selectedDomain, onSele
               variants={cardVariants}
               whileHover={{ y: -4, scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
-              className={`relative flex flex-col items-center text-center p-7 rounded-2xl border-2 transition-all duration-300 card-lift overflow-hidden
+              className={`relative flex flex-col items-center text-center p-4 rounded-2xl border-2 transition-all duration-300 card-lift overflow-hidden
                 ${isSelected 
                   ? `${domain.borderColor} bg-gradient-to-br ${domain.selectedGradient} shadow-lg` 
                   : `border-slate-200/80 bg-gradient-to-br ${domain.gradient} hover:border-slate-300 hover:shadow-md`
@@ -84,7 +84,7 @@ export default function DomainSelection({ onNext, onPrev, selectedDomain, onSele
               
               {/* Icon with unique color */}
               <motion.div 
-                className="w-14 h-14 rounded-2xl flex items-center justify-center mb-4 transition-all duration-300 shadow-sm"
+                className="w-11 h-11 rounded-xl flex items-center justify-center mb-2 transition-all duration-300 shadow-sm"
                 style={{ 
                   backgroundColor: isSelected ? domain.color : `${domain.color}15`,
                   color: isSelected ? 'white' : domain.color
@@ -92,18 +92,18 @@ export default function DomainSelection({ onNext, onPrev, selectedDomain, onSele
                 animate={isSelected ? { scale: [1, 1.15, 1] } : {}}
                 transition={{ duration: 0.3 }}
               >
-                <Icon size={28} />
+                <Icon size={22} />
               </motion.div>
               
-              <h3 className="text-lg font-bold text-slate-800 mb-1">{domain.name}</h3>
-              <p className="text-sm text-slate-500">{domain.desc}</p>
+              <h3 className="text-sm font-bold text-slate-800 mb-0.5">{domain.name}</h3>
+              <p className="text-xs text-slate-500">{domain.desc}</p>
             </motion.button>
           );
         })}
       </motion.div>
 
       {/* Footer Navigation */}
-      <div className="mt-auto pt-6 flex items-center justify-between border-t border-slate-200/60">
+      <div className="mt-auto pt-3 flex items-center justify-between border-t border-slate-200/60 shrink-0">
         <button 
           onClick={onPrev}
           className="flex items-center gap-2 px-6 py-3 rounded-full text-slate-600 font-semibold hover:bg-white/80 transition-colors"

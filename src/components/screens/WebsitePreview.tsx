@@ -108,12 +108,12 @@ export default function WebsitePreview({ onNext, onPrev, domain, websiteName, th
   const activeColor = colorMap[themeColor || currentDomain.color] || colorMap.teal;
 
   return (
-    <div className="flex flex-col flex-1 min-h-[600px]">
+    <div className="flex flex-col h-full">
       
       {/* Header & Device Toggles */}
-      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-6 shrink-0 gap-4">
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-3 shrink-0 gap-2">
         <div>
-          <h2 className="text-3xl font-bold text-slate-800 flex items-center gap-3">
+          <h2 className="text-2xl font-bold text-slate-800 flex items-center gap-2">
             Website Preview <span className="text-xl">✨</span>
           </h2>
           <p className="text-slate-500 mt-1">This is how your website looks based on your requirements.</p>
@@ -142,9 +142,9 @@ export default function WebsitePreview({ onNext, onPrev, domain, websiteName, th
       </div>
 
       {/* Preview Container */}
-      <div className="flex-1 flex justify-center bg-slate-200/50 rounded-3xl border border-slate-200 p-4 sm:p-8">
+      <div className="flex-1 overflow-hidden flex justify-center bg-slate-200/50 rounded-2xl border border-slate-200 p-2 sm:p-4 min-h-0">
         <div 
-          className="bg-white rounded-t-2xl shadow-2xl border border-slate-300 transition-all duration-500 ease-in-out relative flex flex-col"
+          className="bg-white rounded-t-2xl shadow-2xl overflow-y-auto border border-slate-300 transition-all duration-500 ease-in-out relative flex flex-col"
           style={{ width: deviceWidths[device] }}
         >
           {/* Mock Browser Header */}
@@ -160,9 +160,9 @@ export default function WebsitePreview({ onNext, onPrev, domain, websiteName, th
           </div>
 
           {/* Mock Website Content */}
-          <div className="p-8 pb-20">
+          <div className="p-6 pb-16">
             {/* Nav */}
-            <div className="flex justify-between items-center mb-16">
+            <div className="flex justify-between items-center mb-10">
               <div className="font-bold text-2xl flex items-center gap-2" style={{ color: activeColor.text }}>
                 <ActiveIcon style={{ color: activeColor.text }} size={28} /> {displayName}
               </div>
@@ -176,9 +176,9 @@ export default function WebsitePreview({ onNext, onPrev, domain, websiteName, th
             </div>
 
             {/* Hero */}
-            <div className="flex flex-col md:flex-row items-center gap-10 mb-20">
+            <div className="flex flex-col md:flex-row items-center gap-6 mb-12">
               <div className="flex-1 space-y-6">
-                <h1 className="text-4xl md:text-5xl font-extrabold text-slate-800 leading-tight">
+                <h1 className="text-3xl md:text-4xl font-extrabold text-slate-800 leading-tight">
                   {currentDomain.heroTitle.split(',')[0]}<br/> 
                   <span style={{ color: activeColor.text }}>{currentDomain.heroTitle.split(',')[1] || currentDomain.heroTitle}</span>
                 </h1>
@@ -215,7 +215,7 @@ export default function WebsitePreview({ onNext, onPrev, domain, websiteName, th
       </div>
 
       {/* Footer Navigation */}
-      <div className="mt-6 pt-6 flex flex-col sm:flex-row items-center justify-between border-t border-slate-200 shrink-0 gap-4">
+      <div className="mt-3 pt-3 flex flex-col sm:flex-row items-center justify-between border-t border-slate-200 shrink-0 gap-3">
         <button 
           onClick={onPrev}
           className="flex items-center gap-2 px-6 py-3 rounded-full text-slate-600 font-semibold hover:bg-slate-100 transition-colors w-full sm:w-auto justify-center"

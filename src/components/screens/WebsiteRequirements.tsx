@@ -40,13 +40,13 @@ export default function WebsiteRequirements({ onNext, onPrev, websiteName, onNam
   const filledCount = [websiteName ? 1 : 0, 1, 1, selectedFeatures.size > 0 ? 1 : 0].reduce((a, b) => a + b, 0);
   
   return (
-    <div className="flex flex-col flex-1 min-h-[500px] max-w-4xl mx-auto py-2">
+    <div className="flex flex-col h-full max-w-4xl mx-auto">
       <motion.div 
-        className="mb-6"
+        className="mb-3 shrink-0"
         initial={{ opacity: 0, y: -10 }}
         animate={{ opacity: 1, y: 0 }}
       >
-        <h2 className="text-3xl font-extrabold text-slate-800">Website Requirements</h2>
+        <h2 className="text-2xl font-extrabold text-slate-800">Website Requirements</h2>
         <p className="text-slate-500 mt-2">Tell us about your website so we can build it perfectly for you.</p>
         {/* Mini progress */}
         <div className="mt-4 flex items-center gap-3">
@@ -62,7 +62,7 @@ export default function WebsiteRequirements({ onNext, onPrev, websiteName, onNam
       </motion.div>
 
       <motion.div 
-        className="space-y-5 mb-12 flex-1 pr-2"
+        className="space-y-4 mb-4 flex-1 overflow-y-auto pr-2 min-h-0"
         variants={containerVariants}
         initial="hidden"
         animate="visible"
@@ -176,7 +176,7 @@ export default function WebsiteRequirements({ onNext, onPrev, websiteName, onNam
       </motion.div>
 
       {/* Footer Navigation */}
-      <div className="mt-auto pt-6 flex items-center justify-between border-t border-slate-200/60">
+      <div className="mt-auto pt-3 flex items-center justify-between border-t border-slate-200/60 shrink-0">
         <button 
           onClick={onPrev}
           className="flex items-center gap-2 px-6 py-3 rounded-full text-slate-600 font-semibold hover:bg-white/80 transition-colors"

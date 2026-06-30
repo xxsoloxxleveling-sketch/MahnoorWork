@@ -5,11 +5,11 @@ import { ArrowLeft, ArrowRight, Sparkles, Lock } from "lucide-react";
 export default function CustomizeChat({ onNext, onPrev, themeColor }: { onNext: () => void, onPrev: () => void, themeColor: string }) {
 
   return (
-    <div className="flex flex-col flex-1 min-h-[500px] w-full max-w-6xl mx-auto">
+    <div className="flex flex-col h-full w-full max-w-6xl mx-auto">
       
-      <div className="mb-4 flex items-end justify-between shrink-0">
+      <div className="mb-3 flex items-end justify-between shrink-0">
         <div>
-          <h2 className="text-3xl font-bold text-slate-800 flex items-center gap-2">
+          <h2 className="text-2xl font-bold text-slate-800 flex items-center gap-2">
             <Sparkles className="w-6 h-6 text-primary" />
             Customize Your Site
           </h2>
@@ -17,12 +17,12 @@ export default function CustomizeChat({ onNext, onPrev, themeColor }: { onNext: 
         </div>
       </div>
 
-      <div className="flex-1 flex flex-col lg:flex-row gap-6 min-h-[500px]">
+      <div className="flex-1 flex flex-col lg:flex-row gap-4 overflow-hidden min-h-0">
         
         {/* Full Width Preview */}
-        <div className="w-full h-full min-h-[500px] bg-slate-100/50 rounded-3xl border border-slate-200 p-6 relative flex flex-col items-center justify-center bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]">
+        <div className="w-full h-full bg-slate-100/50 rounded-2xl border border-slate-200 p-4 overflow-hidden relative flex flex-col items-center justify-center bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]">
           
-          <div className="w-full h-full min-h-[400px] max-w-4xl bg-white rounded-xl shadow-xl border border-slate-200/60 overflow-hidden flex flex-col">
+          <div className="w-full h-full max-w-4xl bg-white rounded-xl shadow-xl border border-slate-200/60 overflow-hidden flex flex-col">
             <div className="bg-slate-50 p-2 border-b border-slate-200 flex items-center gap-2 shrink-0">
               <div className="flex gap-1.5 ml-2">
                 <div className="w-3 h-3 rounded-full bg-rose-400"></div>
@@ -68,7 +68,7 @@ export default function CustomizeChat({ onNext, onPrev, themeColor }: { onNext: 
       </div>
 
       {/* Footer */}
-      <div className="mt-6 pt-6 flex items-center justify-between border-t border-slate-200 shrink-0 pb-2">
+      <div className="mt-3 pt-3 flex items-center justify-between border-t border-slate-200 shrink-0 pb-1">
         <button 
           onClick={onPrev}
           className="flex items-center gap-2 px-6 py-3 rounded-full text-slate-600 font-semibold hover:bg-slate-100 transition-colors"

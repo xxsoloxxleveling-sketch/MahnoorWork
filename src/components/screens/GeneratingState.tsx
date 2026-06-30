@@ -32,12 +32,12 @@ export default function GeneratingState({ onNext, onCancel }: { onNext: () => vo
   const progressPercentage = Math.round((currentStepIndex / (generationSteps.length - 1)) * 100);
 
   return (
-    <div className="flex flex-col flex-1 min-h-[500px] max-w-3xl mx-auto justify-center py-8">
+    <div className="flex flex-col h-full max-w-3xl mx-auto justify-center py-4">
       
       {/* Orbital Animation + Title */}
-      <div className="text-center mb-12 relative">
+      <div className="text-center mb-6 relative">
         {/* Orbital rings */}
-        <div className="relative w-48 h-48 mx-auto mb-8">
+        <div className="relative w-32 h-32 mx-auto mb-4">
           {/* Center sparkle */}
           <motion.div 
             className="absolute inset-0 flex items-center justify-center"
@@ -91,17 +91,17 @@ export default function GeneratingState({ onNext, onCancel }: { onNext: () => vo
         </div>
 
         <motion.h2 
-          className="text-3xl font-extrabold text-slate-800"
+          className="text-2xl font-extrabold text-slate-800"
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
         >
           Generating Your Website...
         </motion.h2>
-        <p className="text-slate-500 mt-3">This may take a few moments. Please don't close this window.</p>
+        <p className="text-slate-500 mt-2 text-sm">This may take a few moments. Please don't close this window.</p>
       </div>
 
       {/* Progress Bar — Animated gradient */}
-      <div className="w-full bg-slate-100 rounded-full h-3 mb-10 overflow-hidden">
+      <div className="w-full bg-slate-100 rounded-full h-2.5 mb-6 overflow-hidden">
         <motion.div 
           className="h-full rounded-full progress-line"
           animate={{ width: `${progressPercentage}%` }}
@@ -110,7 +110,7 @@ export default function GeneratingState({ onNext, onCancel }: { onNext: () => vo
       </div>
 
       {/* Checklist — Animated transitions */}
-      <div className="glass-card rounded-2xl p-6 space-y-1 shadow-sm mb-12 overflow-hidden">
+      <div className="glass-card rounded-2xl p-4 space-y-0 shadow-sm mb-6 overflow-hidden">
         {generationSteps.map((step, index) => {
           const isCompleted = index < currentStepIndex;
           const isCurrent = index === currentStepIndex;
@@ -119,7 +119,7 @@ export default function GeneratingState({ onNext, onCancel }: { onNext: () => vo
           return (
             <motion.div 
               key={step} 
-              className={`flex items-center gap-4 py-3 px-3 rounded-xl transition-colors duration-300 ${isCurrent ? 'bg-primary/5' : ''}`}
+              className={`flex items-center gap-3 py-2 px-3 rounded-xl transition-colors duration-300 ${isCurrent ? 'bg-primary/5' : ''}`}
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: isPending ? 0.35 : 1, x: 0 }}
               transition={{ delay: index * 0.1, duration: 0.4 }}
@@ -144,7 +144,7 @@ export default function GeneratingState({ onNext, onCancel }: { onNext: () => vo
                   {isPending && <Circle className="text-slate-200" size={22} />}
                 </AnimatePresence>
               </div>
-              <span className={`text-base font-medium transition-colors ${isCompleted ? 'text-slate-600' : isCurrent ? 'text-primary font-bold' : 'text-slate-400'}`}>
+              <span className={`text-sm font-medium transition-colors ${isCompleted ? 'text-slate-600' : isCurrent ? 'text-primary font-bold' : 'text-slate-400'}`}>
                 {step}...
               </span>
             </motion.div>
