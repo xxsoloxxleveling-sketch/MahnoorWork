@@ -89,9 +89,9 @@ export default function Wizard() {
       case 4:
         return <GeneratingState onNext={nextStep} onCancel={() => setStep(3)} onStepChange={setGeneratingStepIndex} />;
       case 5:
-        return <WebsitePreview onNext={nextStep} onPrev={prevStep} domain={selectedDomain} websiteName={websiteName} themeColor={themeColor} />;
+        return <WebsitePreview onNext={nextStep} onPrev={prevStep} domain={selectedDomain} websiteName={websiteName} themeColor={themeColor} onExport={() => setStep(8)} />;
       case 6:
-        return <CustomizeChat onNext={nextStep} onPrev={prevStep} themeColor={themeColor} />;
+        return <CustomizeChat onNext={nextStep} onPrev={prevStep} themeColor={themeColor} domain={selectedDomain} websiteName={websiteName} />;
       case 7:
         return <AccessibilityCheck onNext={nextStep} onPrev={prevStep} />;
       case 8:

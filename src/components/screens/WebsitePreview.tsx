@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { Monitor, Tablet, Smartphone, ArrowRight, ArrowLeft, Code2, CheckCircle, GraduationCap, HeartPulse, Utensils, ShoppingCart, Sun, Briefcase } from "lucide-react";
 
-export default function WebsitePreview({ onNext, onPrev, domain, websiteName, themeColor }: { onNext: () => void, onPrev: () => void, domain: string | null, websiteName: string, themeColor?: string }) {
+export default function WebsitePreview({ onNext, onPrev, domain, websiteName, themeColor, onExport }: { onNext: () => void, onPrev: () => void, domain: string | null, websiteName: string, themeColor?: string, onExport: () => void }) {
   const [device, setDevice] = useState<"desktop" | "tablet" | "mobile">("desktop");
 
   const deviceWidths = {
@@ -225,6 +225,7 @@ export default function WebsitePreview({ onNext, onPrev, domain, websiteName, th
         
         <div className="flex items-center gap-4 w-full sm:w-auto">
           <button 
+            onClick={onExport}
             className="flex-1 sm:flex-none items-center justify-center gap-2 px-6 py-3 rounded-full font-bold bg-slate-100 text-slate-700 hover:bg-slate-200 transition-all flex"
           >
             <Code2 size={20} /> Export Code
